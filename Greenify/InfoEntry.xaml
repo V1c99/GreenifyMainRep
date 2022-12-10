@@ -9,7 +9,16 @@
       Title="InfoEntry">
 
     <Grid>
-        <TextBlock Text="Page 1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" />
-        
+        <TextBlock Text="Page 1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="32" Margin="0,113,0,0" />
+        <TextBox x:Name="DateUserInfo" HorizontalAlignment="Center" Margin="0,177,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Button x:Name="SendDataBtn" Content="SEND" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" Click="SendDataBtn_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="0,246,0,0" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="760,246,0,0" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="383,430,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="DateGaze" HorizontalAlignment="Center" Margin="0,200,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="oil" HorizontalAlignment="Center" Margin="0,225,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="milage" HorizontalAlignment="Center" Margin="0,248,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="avion" Margin="0,271,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Page>

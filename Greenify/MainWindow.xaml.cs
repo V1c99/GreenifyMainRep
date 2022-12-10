@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,16 @@ namespace Greenify
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public struct DateInfo
+        {
+            public double electricity_bill;
+            public double gas_bill;
+            public double oil_bill;
+            public double yearly_milage;
+            public double flights;
+        }
+        DateInfo dateUser;
+            public MainWindow()
         {
             InitializeComponent();
         }
@@ -28,6 +38,12 @@ namespace Greenify
         private void Entry_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new InfoEntry();
+            User.Visibility = Visibility.Collapsed;
+            Sugestii.Visibility = Visibility.Collapsed;
+            Sugests.Visibility = Visibility.Collapsed;
+            Statistici.Visibility = Visibility.Collapsed;
+            Stats.Visibility = Visibility.Collapsed;
+            Sageata.Visibility = Visibility.Collapsed;
         }
 
         private void Details_Click(object sender, RoutedEventArgs e)
@@ -41,7 +57,7 @@ namespace Greenify
             Sageata.Visibility = Visibility.Collapsed;
         }
 
-        private void Home_Click(object sender, RoutedEventArgs e)
+        public void Home_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = null;
             User.Visibility = Visibility.Visible;
@@ -52,10 +68,29 @@ namespace Greenify
             Sageata.Visibility= Visibility.Visible;
             Sugests.Text = "- Mai putin petrol\n- Hi";
             ///carbon calculate
-            double carbon = 0;
-            double electric_bill=52, gas_bill=16, oil_bill=24, yearly_milage = 260, flights=1  ;
+            
+           
             bool metal_rec = false, paper_rec = false;
-            carbon = ((electric_bill * 105) / 48) + ((gas_bill * 105) / 48)+ ((oil_bill * 105) / 48) + ((yearly_milage / 48) * 0.79) + flights * 1100;
+            double carbon = 0;
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader sr = new StreamReader("Base.txt");
+            //Read the first line of text
+            string line;
+            line = sr.ReadLine();
+            dateUser.electricity_bill=Convert.ToDouble(line);
+            line = sr.ReadLine();
+            dateUser.gas_bill = Convert.ToDouble(line);
+            line= sr.ReadLine();
+            dateUser.oil_bill = Convert.ToDouble(line);
+            line = sr.ReadLine(); 
+            dateUser.yearly_milage = Convert.ToDouble(line);
+            line = sr.ReadLine();
+            dateUser.flights = Convert.ToDouble(line);
+            //close the file
+            sr.Close();
+      
+            
+            carbon = ((dateUser.electricity_bill * 105) / 48) + ((dateUser.gas_bill * 105) / 48)+ ((dateUser.oil_bill * 105) / 48) + ((dateUser.yearly_milage / 48) * 0.79) + dateUser.flights * 1100;
 
             if (!paper_rec)
                 carbon += 184;
